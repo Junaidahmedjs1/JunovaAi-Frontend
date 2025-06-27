@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JunovaAI Chat</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>JunovaAI</h2>
+        <button id="new-chat" class="btn">＋ New Chat</button>
+      </div>
+      <div id="history-list" class="history-list"></div>
+    </aside>
+
+    <main class="main-area">
+      <div class="app-bar">
+        <span class="app-title">JunovaAI Chat</span>
+        <div class="app-actions">
+          <button id="clear-btn" class="icon-btn" title="Clear chat">🗑️</button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle dark mode">🌓</button>
+        </div>
+      </div>
+
+      <div class="chat-container">
+        <div id="chat-log" class="chat-log"></div>
+        <div id="typing" class="typing hidden">JunovaAI is typing<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+      </div>
+
+      <form id="chat-form" class="chat-form">
+        <input type="text" id="user-input" placeholder="Type a message..." autocomplete="on" />
+        <button type="submit" id="send-btn" class="icon-btn" disabled>➤</button>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
