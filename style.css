@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;500&display=swap");
 
 :root {
   --md-sys-color-surface: #ffffff;
@@ -24,7 +24,7 @@ body.dark {
 
 body {
   margin: 0;
-  font-family: 'Roboto Flex', sans-serif;
+  font-family: "Roboto Flex", sans-serif;
   background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
   display: flex;
@@ -79,7 +79,8 @@ body {
   flex-direction: column;
   gap: 16px;
   padding-top: 16px;
-  scroll-behavior: smooth;
+  max-height: 70vh;
+  padding: 10px;
 }
 
 .message {
@@ -271,10 +272,15 @@ body {
 
 /* rest remains unchanged (chat bubbles, form, etc.) */
 
-
 @keyframes blink {
-  0%, 80%, 100% { opacity: 0; }
-  40% { opacity: 1; }
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {

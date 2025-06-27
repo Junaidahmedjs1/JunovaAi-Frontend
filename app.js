@@ -32,7 +32,6 @@ function renderSidebar() {
       const div = document.createElement("div");
       div.className = "history-item";
 
-      // Chat title span
       const title = document.createElement("span");
       title.textContent = chat.title || "Untitled Chat";
       title.style.flex = "1";
@@ -42,7 +41,6 @@ function renderSidebar() {
         renderChat();
       };
 
-      // Delete button
       const delBtn = document.createElement("button");
       delBtn.textContent = "🗑️";
       delBtn.title = "Delete chat";
@@ -52,7 +50,7 @@ function renderSidebar() {
       delBtn.style.background = "transparent";
       delBtn.style.color = "red";
       delBtn.onclick = (e) => {
-        e.stopPropagation(); // Prevent opening the chat
+        e.stopPropagation();
         delete allChats[id];
         if (currentChatId === id) {
           currentChatId = Object.keys(allChats).pop() || null;
@@ -62,7 +60,6 @@ function renderSidebar() {
         renderChat();
       };
 
-      // Combine
       div.style.display = "flex";
       div.style.justifyContent = "space-between";
       div.style.alignItems = "center";
@@ -82,7 +79,7 @@ function renderChat() {
     m.textContent = text;
     chatLog.appendChild(m);
   });
-  chatLog.scrollTop = chatLog.scrollHeight;
+  scrollToBottom(false);
 }
 
 function appendMessage(role, text) {
@@ -90,7 +87,7 @@ function appendMessage(role, text) {
   m.className = `message ${role}`;
   m.textContent = text;
   chatLog.appendChild(m);
-  chatLog.scrollTop = chatLog.scrollHeight;
+  scrollToBottom();
   if (currentChatId && allChats[currentChatId]) {
     allChats[currentChatId].messages.push({ role, text });
     if (role === "user" && allChats[currentChatId].title === "New Chat") {
@@ -105,13 +102,13 @@ async function typeMessage(role, text) {
   const m = document.createElement("div");
   m.className = `message ${role}`;
   chatLog.appendChild(m);
-  chatLog.scrollTop = chatLog.scrollHeight;
+  scrollToBottom(false);
 
   let typed = "";
   for (const ch of text) {
     typed += ch;
     m.textContent = typed;
-    chatLog.scrollTop = chatLog.scrollHeight;
+    scrollToBottom(false);
     await new Promise((r) => setTimeout(r, ch.match(/[.,]/) ? 50 : 20));
   }
 
@@ -183,3 +180,11 @@ if (last) {
 }
 renderSidebar();
 renderChat();
+
+// Scroll helper function
+function scrollToBottom(smooth = true) {
+  chatLog.scrollTo({
+    top: chatLog.scrollHeight,
+    behavior: smooth ? "smooth" : "auto",
+  });
+}
