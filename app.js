@@ -122,7 +122,7 @@ async function typeMessage(role, text) {
 }
 
 async function fetchReply(msg) {
-  const res = await fetch("https://your-vercel-app.vercel.app/api/chat", {
+  const res = await fetch("https://junova-ai-backend.vercel.app/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: msg }),
